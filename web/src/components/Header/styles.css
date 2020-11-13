@@ -1,0 +1,148 @@
+#header-component {
+    width: 100%;
+    padding: 15px 5% 15px 5%;
+    box-shadow: 0px 1px 20px -10px rgba(0, 0, 0, 0.66);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#header-component ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#header-component a {
+    font-size: 17px;
+    font-weight: 400;
+    margin-right: 20px;
+}
+
+.search-input {
+    display: flex;
+}
+
+.search-input input {
+    padding: 0 10px;
+    height: 35px;
+    width: 200px;
+    border: 0.5px solid var(--color-border);
+    outline: var(--color-border);
+    box-shadow: inset 0px -2px rgba(128, 128, 128, 0.66);
+    background-color: transparent;
+}
+
+.search-input button {
+    height: 35px;
+    width: 40px;
+    box-shadow: inset 0px -2px rgba(128, 128, 128, 0.66);
+    border: 0.5px solid var(--color-border);
+    background-color: var(--color-dotLib);
+    outline: var(--color-border);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+#header-component .menu-button {
+    display: none;
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.navbar {
+    background-color: #242424;
+    height: 80px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.menu-bars {
+    margin-left: 2rem;
+    font-size: 2rem;
+    background: none;
+}
+
+.nav-menu {
+    background-color: #242424;
+    width: 220px;
+    padding: 25px;
+    height: 100%;
+    display: flex;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    transition: 850ms;
+
+    z-index: 100;
+}
+
+.nav-menu a {
+    color: '#FFF'
+}
+.nav-menu.active {
+    right: 0;
+    transition: 350ms;
+}
+
+.nav-menu-items {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    margin-bottom: 300%;
+}
+
+.nav-title {
+    color: #FFF;
+}
+
+.navbar-toggle {
+    width: 100%;
+}
+
+span {
+    margin-left: 16px;
+}
+
+@media (max-width:780px) {
+    #header-component .menu-component {
+        display: none
+    }
+    #header-component .menu-button {
+        display: block;
+        background: none;
+        border: none;
+    }
+}
+
+@media (max-width:940px) {
+    #header-component a {
+        font-size: 15px;
+        font-weight: 400;
+        margin-right: 10px;
+    }
+}
+
+@media (min-width:1120px) {
+    #header-component {
+        padding: 15px 10% 10px 10%;
+    }
+}
+
+@media (min-width:1270px) {
+    #header-component {
+        padding: 15px 15% 10px 15%;
+    }
+}
+
+@media (min-width:1470px) {
+    #header-component {
+        padding: 15px 20% 15px 20%;
+    }
+}

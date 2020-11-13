@@ -1,0 +1,15 @@
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.checkbox-item label {
+    font-weight: 500;
+    font-size: 11px;
+    text-transform: uppercase;
+}
+
+.checkbox-item {
+    position: relative;
+}

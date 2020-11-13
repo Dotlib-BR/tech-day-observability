@@ -1,0 +1,19 @@
+#checkbox-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#checkbox-container input[type=checkbox] {
+    margin-right: 8px;
+    box-shadow: inset 5px 5px 5px 5px rgba(202, 202, 202, 0.66);
+}
+
+#checkbox-container input[type=checkbox]:checked {
+    box-shadow: none
+}
+
+
+#checkbox-container input[type=checkbox]+label {
+    display: block
+}

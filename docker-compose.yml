@@ -1,0 +1,59 @@
+version: "3.2"
+
+services:
+  server:
+    container_name: server-api
+    image: strapi/strapi
+    volumes:
+      - ./server:/srv/app
+    ports:
+      - '1337:1337'
+
+  elasticsearch:
+    container_name: elasticsearch
+    build:
+      context: elasticsearch/
+      args:
+        ELK_VERSION: $ELK_VERSION
+    volumes:
+      - type: bind
+        source: ./elasticsearch/config/elasticsearch.yml
+        target: /usr/share/elasticsearch/config/elasticsearch.yml
+        read_only: true
+      - type: volume
+        source: elasticsearch
+        target: /usr/share/elasticsearch/data
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      ES_JAVA_OPTS: "-Xmx256m -Xms256m"
+      ELASTIC_PASSWORD: changeme
+      discovery.type: single-node
+    networks:
+      - net_observability
+
+  kibana:
+    container_name: kibana
+    build:
+      context: kibana/
+      args:
+        ELK_VERSION: $ELK_VERSION
+    volumes:
+      - type: bind
+        source: ./kibana/config/kibana.yml
+        target: /usr/share/kibana/config/kibana.yml
+        read_only: true
+    ports:
+      - "5601:5601"
+    networks:
+      - net_observability
+    depends_on:
+      - elasticsearch
+
+networks:
+  net_observability:
+    driver: bridge
+
+volumes:
+  elasticsearch:
