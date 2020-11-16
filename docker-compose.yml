@@ -8,6 +8,28 @@ services:
       - ./server:/srv/app
     ports:
       - '1337:1337'
+    networks: 
+      - net_observability
+
+  web-app:
+    container_name: web-app
+    build:
+      context: .
+      dockerfile: ./.docker/Dockerfile
+    stdin_open: true
+    networks: 
+      - net_observability
+    ports:
+      - 3000:3000
+    volumes:
+      - type: volume
+        source: node_modules
+        target: /usr/src/app/node_modules
+      - type: bind
+        source: ./web
+        target: /usr/src/app
+    depends_on: 
+      - server
 
   elasticsearch:
     container_name: elasticsearch
@@ -51,9 +73,30 @@ services:
     depends_on:
       - elasticsearch
 
+  apm-server:
+    container_name: apm-server
+    build:
+      context: apm-server/
+      args:
+        ELK_VERSION: $ELK_VERSION
+    command:
+      - --strict.perms=false
+    volumes:
+      - type: bind
+        source: ./apm-server/config/apm-server.yml
+        target: /usr/share/apm-server/apm-server.yml
+        read_only: true
+    ports:
+      - '8200:8200'
+    networks:
+      - net_observability
+    depends_on:
+      - elasticsearch
+
 networks:
   net_observability:
     driver: bridge
 
 volumes:
   elasticsearch:
+  node_modules:

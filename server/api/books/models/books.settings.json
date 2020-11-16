@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "books",
+  "info": {
+    "name": "Books"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "editor": {
+      "type": "enumeration",
+      "enum": [
+        "Atheneu",
+        "SenacSP",
+        "Zahar"
+      ]
+    },
+    "year": {
+      "type": "integer"
+    },
+    "image": {
+      "type": "string"
+    }
+  }
+}
